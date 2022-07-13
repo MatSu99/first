@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <ctime>
+#include "calendar.h"
 
 int main () {
 
