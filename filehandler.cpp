@@ -1,3 +1,7 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
 #include "filehandler.h"
 
 FileHandler::FileHandler() {
@@ -166,5 +170,29 @@ void FileHandler::GetLinesToVector(int _LineStart, int _LineStop, std::vector<st
 
     file.close();
 
+
+}
+
+void FileHandler::GiveSettings(std::vector<std::string> &_TargetVector) {
+
+    std::fstream file;
+    file.open(Name, std::ios::in);
+
+    if(file.good()==false) {
+        std::cout << "ERROR, CONSTRUCTOR HAVE NOT FOUND " << Name << " file!";
+        //return "E";
+        throw 100; // To do handling exepctions
+    }
+
+    std::string line;
+
+    while(getline(file,line))
+    {
+        _TargetVector.push_back(line);
+    }
+
+    //++NumberOfLines;
+
+    file.close();
 
 }

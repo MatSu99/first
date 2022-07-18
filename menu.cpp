@@ -1,3 +1,4 @@
+#include <iostream>
 #include "menu.h"
 
 Menu::Menu() {

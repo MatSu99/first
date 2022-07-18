@@ -1,15 +1,15 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include <ctime>
 #include <vector>
 #include <iterator>
-#include "calendar.cpp"
-#include "menu.cpp"
-#include "filehandler.cpp"
+#include "calendar.h"
+#include "menu.h"
+#include "filehandler.h"
+#include "scribe.h"
 
 int main () {
-
+    /*
     std::cout << "Hello World\n";
     Calendar test_1;
     test_1.test_1();
@@ -40,6 +40,12 @@ int main () {
     }
 
     std::cout << TestVector.size();
+    */
+    Scribe t_10;
+
+    t_10.GetSettings();
+
+    t_10.PrintVectors();
 
 
 

@@ -1,4 +1,9 @@
+#include <string>
+#include <iostream>
+#include <ctime>
 #include "calendar.h"
+
+
 
 Calendar::Calendar(){
     ActivationTime << time(nullptr);
