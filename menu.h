@@ -5,13 +5,15 @@
 class Menu {
 
     private:
-
-    std::string Options[NumOfOptions];
+        std::string Options[NumOfOptions];
 
     public:
 
-    Menu();
-    ~Menu();
-    void ShowOptions();
-    int ChooseOption();
+        Menu();
+        ~Menu();
+        bool Working();
+        void ShowOptions();
+        int ChooseOption();
+        void CheckSettings();
+        void Update();
 };

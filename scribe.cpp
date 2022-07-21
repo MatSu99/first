@@ -26,18 +26,18 @@
             HandlerInstance.GiveSettings(Settings);
             std::vector<std::string>::iterator Iter_1 = Settings.begin();
 
-            std::cout << "DEBUG POINT 1 REACHED\n";
+            //std::cout << "DEBUG POINT 1 REACHED\n";
 
-            std::cout << DIVIDER << std::endl;
-            std::cout << Settings.size() << std::endl;
-            std::cout << Settings[0] << std::endl;
-            std::cout << *Iter_1 << std::endl;
+            //std::cout << DIVIDER << std::endl;
+            //std::cout << Settings.size() << std::endl;
+            //std::cout << Settings[0] << std::endl;
+            //std::cout << *Iter_1 << std::endl;
             //std::cout << Settings.size() << std::endl;
 
             
             while(true) {
 
-                std::cout << "DEBUG POINT 1.1 REACHED\n";
+                //std::cout << "DEBUG POINT 1.1 REACHED\n";
                 
                 if(*Iter_1 == DIVIDER) {
                     //End of phase 1
@@ -49,14 +49,14 @@
                     Abbreviations.push_back(*Iter_1);
                     Iter_1++;
                     swap = false;
-                    std::cout << "DEBUG POINT 2 REACHED\n";
+                    //std::cout << "DEBUG POINT 2 REACHED\n";
                 }
 
                 else {
                     Definitions.push_back(*Iter_1);
                     Iter_1++;
                     swap = true;
-                    std::cout << "DEBUG POINT 3 REACHED\n";
+                    //std::cout << "DEBUG POINT 3 REACHED\n";
                 }
 
             
@@ -108,4 +108,12 @@ void Scribe::PrintVectors() {
 
     return;
 
+}
+
+void Scribe::AppendLogs(std::vector<bool> &_UserInput) {
+
+    FileHandler FileHandlerInstance;
+
+    FileHandlerInstance.InputLog(Abbreviations,_UserInput);
+    return;
 }

@@ -1,5 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "menu.h"
+#include "scribe.h"
 
 Menu::Menu() {
 
@@ -116,4 +118,39 @@ int Menu::ChooseOption() {
 
     // Error
     return 0;
+}
+
+void Menu::CheckSettings() {
+
+    Scribe ScribeInstance;
+
+    ScribeInstance.GetSettings();
+    ScribeInstance.PrintVectors();
+
+    return;
+
+}
+
+bool Menu::Working() {
+
+    int decisoon =0;
+
+    while(true) {
+
+        decisoon = ChooseOption();
+
+        if(decisoon == 4)
+            break;
+        
+        if(decisoon == 0) {
+
+        }
+
+        if(decisoon == 1) {
+            CheckSettings();
+        }
+    }
+
+
+    return true;
 }

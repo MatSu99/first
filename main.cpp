@@ -41,11 +41,17 @@ int main () {
 
     std::cout << TestVector.size();
     */
-    Scribe t_10;
 
-    t_10.GetSettings();
 
-    t_10.PrintVectors();
+    //time_t TimeStamp_ = test_1.GetTime();
+
+
+
+    Menu MenuInstance;
+    MenuInstance.Working();
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 #pragma once
 
+
 class Scribe {
 
     std::vector<std::string> Abbreviations;
@@ -12,8 +13,10 @@ class Scribe {
         void GetSettings();
         void AddOption();
         void ShowDefinitions();
+        
 
         void PrintVectors();
+        void AppendLogs(std::vector<bool> &_UserInput);
 
         
 };

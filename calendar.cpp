@@ -39,3 +39,14 @@ void Calendar::test_1() {
 
 }
 
+size_t Calendar::GetTime() {
+
+
+    return (size_t)ActivationTime;
+}
+
+std::string Calendar::GetTime2() {
+    time_t A = time(nullptr);
+
+    return std::to_string(A);
+}
