@@ -1,5 +1,4 @@
 # pragma once
-
 #define NumOfOptions 5
 
 class Menu {
@@ -15,5 +14,5 @@ class Menu {
         void ShowOptions();
         int ChooseOption();
         void CheckSettings();
-        void Update();
+        void Update( Scribe &ScribeInstance);
 };

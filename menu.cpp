@@ -1,15 +1,15 @@
 #include <iostream>
 #include <vector>
-#include "menu.h"
 #include "scribe.h"
+#include "menu.h"
 
 Menu::Menu() {
 
-    Options[0] = "Op1";
-    Options[1] = "Op2";
-    Options[2] = "Op3";
-    Options[3] = "Op4";
-    Options[4] = "Op5";
+    Options[0] = "[0]";
+    Options[1] = "[1]";
+    Options[2] = "[2]";
+    Options[3] = "[3]";
+    Options[4] = "[4] EXIT";
 
 }
 
@@ -34,6 +34,7 @@ int Menu::ChooseOption() {
 
     while(true) {
         start:
+        ShowOptions();
 
         while(true) {
             
@@ -55,29 +56,33 @@ int Menu::ChooseOption() {
 
 
         switch(option) {
-
-            case 1:
+            case 0:
                 std::cout << "Confirm option: " << Options[0] << "(Y/N)\n";
                 //
                 break;
 
-            case 2:
+            case 1:
                 std::cout << "Confirm option: " << Options[1] << "(Y/N)\n";
+                //
+                break;
+
+            case 2:
+                std::cout << "Confirm option: " << Options[2] << "(Y/N)\n";
                 //
                 break;
             
             case 3:
-                std::cout << "Confirm option: " << Options[2] << "(Y/N)\n";
-                //
-                break;
-
-            case 4:
                 std::cout << "Confirm option: " << Options[3] << "(Y/N)\n";
                 //
                 break;
 
-            case 5:
+            case 4:
                 std::cout << "Confirm option: " << Options[4] << "(Y/N)\n";
+                //
+                break;
+
+            case 5:
+                std::cout << "Confirm option: " << Options[5] << "(Y/N)\n";
                 //
                 break;
             default:
@@ -135,6 +140,12 @@ bool Menu::Working() {
 
     int decisoon =0;
 
+    Scribe ScribeInstance;
+    ScribeInstance.GetSettings();
+
+    
+
+
     while(true) {
 
         decisoon = ChooseOption();
@@ -144,13 +155,61 @@ bool Menu::Working() {
         
         if(decisoon == 0) {
 
+            Update(ScribeInstance);
+
         }
 
         if(decisoon == 1) {
-            CheckSettings();
+            ScribeInstance.PrintVectors();
         }
     }
 
 
     return true;
+}
+
+void Menu::Update(Scribe &ScribeInstance) {
+
+    std::vector<bool> UserInput;
+    char input_1 = 'N';
+
+    for(int i = 0; i < ScribeInstance.GetSizeAbb(); ++i) {
+
+        checkpoint_1:
+
+        std::cout << "UPDATE [" << i+1 <<"] " << ScribeInstance.GetDefFrom(i) << "\n";
+
+        while(true) {
+            
+            //std::cout << "Y/N ";
+            std::cin >> input_1;
+            
+            if(std::cin.fail() == true) {
+                std::cin.clear();
+                std::cin.ignore(1000,'\n');
+            }   
+            else {
+                break;
+            }
+
+        }
+
+        if(input_1 == 'Y' || input_1 == 'y') {
+            UserInput.push_back(1);
+        }
+        else if(input_1 == 'N' || input_1 == 'n') {
+            UserInput.push_back(0);
+        }
+        else
+            goto checkpoint_1;
+
+
+
+    }
+
+    ScribeInstance.AppendLogs(UserInput);
+
+    std::cout << "LOGS UPDATED!\n";
+
+    return;
 }

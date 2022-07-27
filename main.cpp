@@ -3,10 +3,11 @@
 #include <iostream>
 #include <vector>
 #include <iterator>
+#include "scribe.h"
 #include "calendar.h"
 #include "menu.h"
 #include "filehandler.h"
-#include "scribe.h"
+
 
 int main () {
     /*

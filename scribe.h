@@ -18,5 +18,15 @@ class Scribe {
         void PrintVectors();
         void AppendLogs(std::vector<bool> &_UserInput);
 
+        // GET METHODS
+
+        int GetSizeAbb();
+        int GetSizeDef();
+        bool CheckIfRule1(int place);
+
+        std::string GetAbbFrom( int place);
+        std::string GetDefFrom ( int place);
+
+
         
 };

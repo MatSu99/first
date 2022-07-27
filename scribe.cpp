@@ -77,6 +77,7 @@
             };// vector.end() returns end + 1 remeber that!
  
         return;
+
         }
 
 void Scribe::PrintVectors() {
@@ -116,4 +117,42 @@ void Scribe::AppendLogs(std::vector<bool> &_UserInput) {
 
     FileHandlerInstance.InputLog(Abbreviations,_UserInput);
     return;
+
+}
+
+int Scribe::GetSizeAbb() {
+
+    return Abbreviations.size();
+
+}
+
+bool Scribe::CheckIfRule1(int place) { // PLACE IN VECTOR A = B+1 PLACE IN TXT FILES (First line is 1 not 0 in txt)
+
+    for (int i = 0; i < Rule_1.size(); ++i) {
+
+        if(place+1 == Rule_1[i]) {
+            return true;
+        }
+    }
+
+    return false;
+
+}
+
+std::string Scribe::GetAbbFrom ( int place ) {
+
+    if(place > Abbreviations.size())
+        return "ERR OUT OF RANGE";
+
+    return Abbreviations[place];
+
+}
+
+std::string Scribe::GetDefFrom ( int place ) {
+
+    if(place > Definitions.size())
+        return "ERR OUT OF RANGE";
+
+    return Definitions[place];
+
 }

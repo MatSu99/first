@@ -10,4 +10,4 @@ ANM
 Animation
 XXXXXXXXXX
 1
-7
+4
