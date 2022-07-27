@@ -1,15 +1,16 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include <ctime>
 #include <vector>
 #include <iterator>
-#include "calendar.cpp"
-#include "menu.cpp"
-#include "filehandler.cpp"
+#include "scribe.h"
+#include "calendar.h"
+#include "menu.h"
+#include "filehandler.h"
+
 
 int main () {
-
+    /*
     std::cout << "Hello World\n";
     Calendar test_1;
     test_1.test_1();
@@ -40,6 +41,18 @@ int main () {
     }
 
     std::cout << TestVector.size();
+    */
+
+
+    //time_t TimeStamp_ = test_1.GetTime();
+
+
+
+    Menu MenuInstance;
+    MenuInstance.Working();
+
+
+
 
 
 

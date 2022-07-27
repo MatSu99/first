@@ -1,4 +1,9 @@
+#include <string>
+#include <iostream>
+#include <ctime>
 #include "calendar.h"
+
+
 
 Calendar::Calendar(){
     ActivationTime << time(nullptr);
@@ -34,3 +39,14 @@ void Calendar::test_1() {
 
 }
 
+size_t Calendar::GetTime() {
+
+
+    return (size_t)ActivationTime;
+}
+
+std::string Calendar::GetTime2() {
+    time_t A = time(nullptr);
+
+    return std::to_string(A);
+}

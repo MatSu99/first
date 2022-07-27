@@ -1,14 +1,5 @@
-lalalala
-atartatat
-sxd
-
-1997
-END
-
-Test
-to
-powinno
-sie
-printowac
-TO NIE!
-dasdad
+0 ENG:0 GER:1 JAP:1 CPP:1 ANM:1 
+0 ENG:0 GER:1 JAP:1 CPP:1 ANM:1 
+0 ENG:0 GER:1 JAP:1 CPP:1 ANM:1 
+1658948580 ENG:1 GER:0 JAP:0 CPP:1 ANM:0 
+1658948621 ENG:1 GER:1 JAP:1 CPP:1 ANM:1 

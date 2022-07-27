@@ -1,4 +1,9 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
 #include "filehandler.h"
+#include "calendar.h"
 
 FileHandler::FileHandler() {
     Name = "logs.txt";
@@ -165,6 +170,78 @@ void FileHandler::GetLinesToVector(int _LineStart, int _LineStop, std::vector<st
     }
 
     file.close();
+
+
+}
+
+void FileHandler::GiveSettings(std::vector<std::string> &_TargetVector) {
+
+    std::fstream file;
+    file.open(Name, std::ios::in);
+
+    if(file.good()==false) {
+        std::cout << "ERROR, CONSTRUCTOR HAVE NOT FOUND " << Name << " file!";
+        //return "E";
+        throw 100; // To do handling exepctions
+    }
+
+    std::string line;
+
+    while(getline(file,line))
+    {
+        _TargetVector.push_back(line);
+    }
+
+    //++NumberOfLines;
+
+    file.close();
+
+}
+
+bool FileHandler::InputLog(std::vector<std::string> &_SourceTarget, std::vector<bool> &_TargetVector2 ) {
+
+    Calendar CalendarInstance;
+
+    std::string Log_;
+
+    Log_ = Log_ +  CalendarInstance.GetTime2();
+
+    Log_ = Log_ + ' ';
+
+    //
+
+    for(int i = 0; i<_SourceTarget.size(); ++i) {
+        
+        Log_ = Log_ + _SourceTarget[i]+ ':' + std::to_string(_TargetVector2[i]) + ' ';
+
+    }
+
+    Log_ = Log_+'\n';
+
+    std::fstream file;
+    file.open(Name, std::ios::app);
+
+    if(file.good()==false) {
+        std::cout << "ERROR, CONSTRUCTOR HAVE NOT FOUND " << Name << " file!";
+        //return "E";
+        return false;
+        //throw 100; // To do handling exepctions
+    }
+
+    file << Log_;
+
+    file.close();
+
+
+    return true;
+
+    
+
+
+
+    //Log_ = Log_ + CalendarInstance.GetTime();
+
+
 
 
 }
