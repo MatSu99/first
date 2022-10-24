@@ -5,8 +5,8 @@
 
 Menu::Menu() {
 
-    Options[0] = "[0]";
-    Options[1] = "[1]";
+    Options[0] = "[0] Update logs";
+    Options[1] = "[1] Print vectors";
     Options[2] = "[2]";
     Options[3] = "[3]";
     Options[4] = "[4] EXIT";
@@ -138,13 +138,11 @@ void Menu::CheckSettings() {
 
 bool Menu::Working() {
 
-    int decisoon =0;
+    int decisoon = 0;
 
     Scribe ScribeInstance;
     ScribeInstance.GetSettings();
-
-    
-
+    ScribeInstance.ReadLogs();
 
     while(true) {
 
@@ -158,17 +156,32 @@ bool Menu::Working() {
             Update(ScribeInstance);
 
         }
-
         if(decisoon == 1) {
             ScribeInstance.PrintVectors();
         }
-    }
+        if(decisoon == 2) {
 
+        }
+        if(decisoon == 3) {
+
+        }
+    }
 
     return true;
 }
 
 void Menu::Update(Scribe &ScribeInstance) {
+
+    bool check_time = ScribeInstance.checkTwentyFourHours(ScribeInstance.ExtractTime());
+
+    if(check_time == true)
+    {
+        //
+    }
+    else
+    {
+        std::cout << "WARNING !!! LAST UPDATE DONE IN LESS THAN 23 HOURS\n";
+    }
 
     std::vector<bool> UserInput;
     char input_1 = 'N';

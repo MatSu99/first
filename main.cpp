@@ -48,11 +48,32 @@ int main () {
 
 
 
+
+
     Menu MenuInstance;
     MenuInstance.Working();
 
+    // TODO
+    // FILEHANDLER, APPENDING LOGS WORKS INCORRECTLY
 
 
+
+ 
+
+   //FileHandler TestInstance("logs.txt");
+   //TestInstance.GetFromLogs();
+
+  // std::vector<std::string> TestVec_1 = TestInstance.GetAllLogs();
+
+/* 
+    Scribe TestInstance_Scribe;
+    TestInstance_Scribe.ReadLogs();
+    int X = TestInstance_Scribe.ExtractTime();
+    std::cout << X;
+    bool XX = TestInstance_Scribe.checkTwentyFourHours(X);
+    std::cout << XX;
+ 
+ */
 
 
 

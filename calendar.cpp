@@ -6,7 +6,10 @@
 
 
 Calendar::Calendar(){
-    ActivationTime << time(nullptr);
+    ActivationTime = time(nullptr);
+/*     std::cout << "\n ACTIVATION TIME: " << ActivationTime << std::endl;
+    std::cout<< "\n ACTIVATION TIME(INT): " <<(int)ActivationTime << std::endl;
+    std::cout<< "\n ACTIVATION TIME(STRING): " <<std::to_string(ActivationTime) << std::endl; */
 }
 
 Calendar::~Calendar(){
@@ -39,10 +42,10 @@ void Calendar::test_1() {
 
 }
 
-size_t Calendar::GetTime() {
+int Calendar::GetTime() {
 
 
-    return (size_t)ActivationTime;
+    return (int)ActivationTime;
 }
 
 std::string Calendar::GetTime2() {

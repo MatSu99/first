@@ -76,19 +76,50 @@ std::string FileHandler::GetFromLogs() {
     int num_line;
 
     getline(file,line);
+    std::cout << line;
     std::cout << "___";
 
-    while(getline(file,line))
+/*     while(getline(file,line))
     {
         std::cout << line;
         std::cout << "_END_\n";
-    }
+    } */
+
 
 
     file.close();
     // TO DO 
 
     return line;
+
+}
+
+std::vector<std::string> FileHandler::GetAllLogs() {
+
+    std::fstream file;
+    file.open("logs.txt", std::ios::in);
+    std::vector<std::string> ToReturnVector;        // You can return this as value since C++11
+
+    if(file.good()==false) {
+        std::cout << "ERROR";
+        throw 101;
+        return ToReturnVector;  // Returning empty vector
+    }
+
+       std::string line;
+    while(getline(file,line))
+    {
+        line+='\n';
+        ToReturnVector.push_back(line);
+
+    }
+
+    file.close();
+
+    return ToReturnVector;  // You can return this as value since C++11
+                            // However, there are some places where 
+                            // vector is passed by reference ( in this code)
+
 
 }
 

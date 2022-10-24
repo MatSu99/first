@@ -4,7 +4,9 @@
 #include <string>
 #include "scribe.h"
 #include "filehandler.h"
+#include "calendar.h"
 #define DIVIDER "XXXXXXXXXX"
+#define DAY  (size_t)86400      // seconds ( 24*60*60)
 
         
         
@@ -20,28 +22,15 @@
         void Scribe::GetSettings() {
             
             std::vector<std::string> Settings;
-            //std::vector<std::string>::iterator Iter_1 = Settings.begin();
             bool swap = true;
             FileHandler HandlerInstance("settings.txt");
             HandlerInstance.GiveSettings(Settings);
             std::vector<std::string>::iterator Iter_1 = Settings.begin();
-
-            //std::cout << "DEBUG POINT 1 REACHED\n";
-
-            //std::cout << DIVIDER << std::endl;
-            //std::cout << Settings.size() << std::endl;
-            //std::cout << Settings[0] << std::endl;
-            //std::cout << *Iter_1 << std::endl;
-            //std::cout << Settings.size() << std::endl;
-
             
             while(true) {
 
-                //std::cout << "DEBUG POINT 1.1 REACHED\n";
-                
                 if(*Iter_1 == DIVIDER) {
-                    //End of phase 1
-                    //Iter_1++;
+
                     break;
                 }
 
@@ -49,17 +38,14 @@
                     Abbreviations.push_back(*Iter_1);
                     Iter_1++;
                     swap = false;
-                    //std::cout << "DEBUG POINT 2 REACHED\n";
                 }
 
                 else {
                     Definitions.push_back(*Iter_1);
                     Iter_1++;
                     swap = true;
-                    //std::cout << "DEBUG POINT 3 REACHED\n";
                 }
 
-            
             }
 
             if (Iter_1 == Settings.end()) {
@@ -71,7 +57,7 @@
             }
 
             while(Iter_1 != Settings.end()) {
-                Rule_1.push_back(stoi(*Iter_1));
+                Rule_1.push_back(stoi(*Iter_1));    // String to int stoi
                 Iter_1++;
 
             };// vector.end() returns end + 1 remeber that!
@@ -80,7 +66,26 @@
 
         }
 
-void Scribe::PrintVectors() {
+void Scribe::ReadLogs()
+{
+
+    FileHandler HandlerInstance("logs.txt");
+    Logs = HandlerInstance.GetAllLogs();
+
+}
+
+void Scribe::PrintLogs()
+{
+
+    for(auto& x : Logs)
+   {
+        std::cout << x;
+   }
+
+}
+
+void Scribe::PrintVectors() 
+{
 
     std::vector<std::string>::iterator Iter_1 = Abbreviations.begin();
     std::vector<std::string>::iterator Iter_2 = Definitions.begin();
@@ -106,27 +111,28 @@ void Scribe::PrintVectors() {
         Iter_3++;
     }while( Iter_3 != Rule_1.end());
     
-
     return;
 
 }
 
-void Scribe::AppendLogs(std::vector<bool> &_UserInput) {
+void Scribe::AppendLogs(std::vector<bool> &_UserInput) 
+{
 
     FileHandler FileHandlerInstance;
-
     FileHandlerInstance.InputLog(Abbreviations,_UserInput);
-    return;
+
 
 }
 
-int Scribe::GetSizeAbb() {
+int Scribe::GetSizeAbb() 
+{
 
     return Abbreviations.size();
 
 }
 
-bool Scribe::CheckIfRule1(int place) { // PLACE IN VECTOR A = B+1 PLACE IN TXT FILES (First line is 1 not 0 in txt)
+bool Scribe::CheckIfRule1(int place)        // PLACE IN VECTOR A = B+1 PLACE IN TXT FILES (First line is 1 not 0 in txt)
+{
 
     for (int i = 0; i < Rule_1.size(); ++i) {
 
@@ -139,7 +145,8 @@ bool Scribe::CheckIfRule1(int place) { // PLACE IN VECTOR A = B+1 PLACE IN TXT F
 
 }
 
-std::string Scribe::GetAbbFrom ( int place ) {
+std::string Scribe::GetAbbFrom ( int place ) 
+{
 
     if(place > Abbreviations.size())
         return "ERR OUT OF RANGE";
@@ -148,11 +155,50 @@ std::string Scribe::GetAbbFrom ( int place ) {
 
 }
 
-std::string Scribe::GetDefFrom ( int place ) {
+std::string Scribe::GetDefFrom ( int place ) 
+{
 
     if(place > Definitions.size())
         return "ERR OUT OF RANGE";
 
     return Definitions[place];
+
+}
+
+bool Scribe::checkTwentyFourHours(int T1)
+{
+    Calendar CalendarInstance;
+    //std::cout << "\n TIME: " << CalendarInstance.GetTime();
+    //std::cout << "\n T: " << T1;
+    if(T1 > stoi(CalendarInstance.GetTime2()))
+    {
+        return false;
+    }
+    int difference =  CalendarInstance.GetTime() - T1;
+    //std::cout << "\n DIFF:" << difference << std::endl;
+
+    if(difference < (DAY - 3600))       // 24-1 = 23 hours
+    {
+        return false;
+    }
+
+    return true;
+
+
+}
+
+size_t Scribe::ExtractTime()        // WARNING, IF LAST LINE IS EMPTY THIS WILL GO DOWN FAST AF BOY
+{
+    //std::cout << "Start";
+    std::string StringFromVec = Logs.back();
+    //std::cout << "Start 2";
+    int flare = StringFromVec.find(' ');
+    //std::cout << "Start 3";
+
+    std::string SubString = StringFromVec.substr(0, flare);
+
+    std::cout<< SubString;
+
+    return std::stoi(SubString);
 
 }

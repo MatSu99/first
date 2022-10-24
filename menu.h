@@ -1,5 +1,5 @@
 # pragma once
-#define NumOfOptions 5
+# define NumOfOptions 5
 
 class Menu {
 
