@@ -241,13 +241,16 @@ bool FileHandler::InputLog(std::vector<std::string> &_SourceTarget, std::vector<
 
     Log_ = Log_ + ' ';
 
-    //
+ 
 
     for(int i = 0; i<_SourceTarget.size(); ++i) {
         
         Log_ = Log_ + _SourceTarget[i]+ ':' + std::to_string(_TargetVector2[i]) + ' ';
 
     }
+
+    Log_.pop_back();
+
 
     //Log_ = Log_+'\n';
 

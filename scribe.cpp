@@ -68,6 +68,10 @@
 
 void Scribe::ReadLogs()
 {
+    if(Logs.empty() == false)
+    {
+        Logs.clear();
+    }
 
     FileHandler HandlerInstance("logs.txt");
     Logs = HandlerInstance.GetAllLogs();
@@ -90,6 +94,7 @@ void Scribe::PrintVectors()
     std::vector<std::string>::iterator Iter_1 = Abbreviations.begin();
     std::vector<std::string>::iterator Iter_2 = Definitions.begin();
     std::vector<int>::iterator Iter_3 = Rule_1.begin();
+    std::vector<std::string>::iterator Iter_4 = Logs.begin();
 
     if(Iter_1 == Abbreviations.end())
         return;
@@ -110,6 +115,8 @@ void Scribe::PrintVectors()
         std::cout << "Vec 3: " << *Iter_3 << "\n";
         Iter_3++;
     }while( Iter_3 != Rule_1.end());
+
+    PrintLogs();
     
     return;
 
@@ -175,13 +182,15 @@ bool Scribe::checkTwentyFourHours(int T1)
         return false;
     }
     int difference =  CalendarInstance.GetTime() - T1;
-    //std::cout << "\n DIFF:" << difference << std::endl;
+    std::cout << "\n DIFF:" << difference << std::endl;
 
     if(difference < (DAY - 3600))       // 24-1 = 23 hours
     {
+        std::cout << "FALSE\n";
         return false;
     }
 
+    std::cout << "TRUE\n";
     return true;
 
 
@@ -197,7 +206,7 @@ size_t Scribe::ExtractTime()        // WARNING, IF LAST LINE IS EMPTY THIS WILL 
 
     std::string SubString = StringFromVec.substr(0, flare);
 
-    std::cout<< SubString;
+    //std::cout<< SubString;
 
     return std::stoi(SubString);
 

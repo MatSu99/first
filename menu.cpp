@@ -224,5 +224,7 @@ void Menu::Update(Scribe &ScribeInstance) {
 
     std::cout << "LOGS UPDATED!\n";
 
+    ScribeInstance.ReadLogs();
+
     return;
 }
