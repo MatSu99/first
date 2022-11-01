@@ -235,6 +235,8 @@ bool FileHandler::InputLog(std::vector<std::string> &_SourceTarget, std::vector<
 
     std::string Log_;
 
+    Log_ = Log_+'\n';
+
     Log_ = Log_ +  CalendarInstance.GetTime2();
 
     Log_ = Log_ + ' ';
@@ -247,7 +249,7 @@ bool FileHandler::InputLog(std::vector<std::string> &_SourceTarget, std::vector<
 
     }
 
-    Log_ = Log_+'\n';
+    //Log_ = Log_+'\n';
 
     std::fstream file;
     file.open(Name, std::ios::app);
