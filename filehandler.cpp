@@ -281,3 +281,34 @@ bool FileHandler::InputLog(std::vector<std::string> &_SourceTarget, std::vector<
 
 
 }
+
+bool FileHandler::ModifySettings(std::vector<std::string> &_SourceTarget)
+{
+
+    std::string _Settings;
+
+    for(int i = 0; i<_SourceTarget.size(); ++i) {
+        
+        _Settings = _Settings + _SourceTarget[i]+ '\n';
+
+    }
+
+    _Settings.pop_back();
+
+
+    std::fstream file;
+    file.open(Name, std::ios::out | std::ios::trunc);
+
+    if(file.good()==false) {
+        std::cout << "ERROR, CONSTRUCTOR HAVE NOT FOUND " << Name << " file!";
+        //return "E";
+        return false;
+        //throw 100; // To do handling exepctions
+    }
+
+    file << _Settings;
+
+    file.close();
+
+    return true;
+}

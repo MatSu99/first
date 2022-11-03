@@ -12,7 +12,8 @@ class Scribe {
         Scribe();
         ~Scribe();
         void GetSettings();
-        void AddOption();
+        bool AddOption(std::string _Abb, std::string _Def, bool Rule1);
+        void DeleteOption(int _input1);
         void ShowDefinitions();
         
 
@@ -23,6 +24,7 @@ class Scribe {
 
         size_t ExtractTime();
         bool checkTwentyFourHours(int T1);
+        bool checkProposedAbb(std::string _Abb);
 
         // GET METHODS
 

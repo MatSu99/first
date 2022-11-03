@@ -7,6 +7,7 @@
 #include "calendar.h"
 #define DIVIDER "XXXXXXXXXX"
 #define DAY  (size_t)86400      // seconds ( 24*60*60)
+#define ABB_SIZE 3
 
         
         
@@ -125,7 +126,7 @@ void Scribe::PrintVectors()
 void Scribe::AppendLogs(std::vector<bool> &_UserInput) 
 {
 
-    FileHandler FileHandlerInstance;
+    FileHandler FileHandlerInstance("logs.txt");
     FileHandlerInstance.InputLog(Abbreviations,_UserInput);
 
 
@@ -209,5 +210,66 @@ size_t Scribe::ExtractTime()        // WARNING, IF LAST LINE IS EMPTY THIS WILL 
     //std::cout<< SubString;
 
     return std::stoi(SubString);
+
+}
+
+bool Scribe::checkProposedAbb(std::string _Abb)  // Returns true if proposed Abb can be used, meaning its length is ok and it is not duplicate
+{
+    if(_Abb.size() != ABB_SIZE)
+    {
+        return false;
+    }
+    else
+    {
+        for( auto &x : Abbreviations)
+        {
+            if( x == _Abb)
+                return false;
+        }
+
+        return true;
+    }
+}
+
+bool Scribe::AddOption(std::string _Abb, std::string _Def, bool Rule1)
+{
+    if(checkProposedAbb(_Abb) == false)
+    {
+        return false;
+    }
+
+    std::vector<std::string> _Input;
+
+    for(int i = 0; i < Abbreviations.size(); ++i)
+    {
+        _Input.push_back(Abbreviations[i]);
+        _Input.push_back(Definitions[i]);
+    }
+
+    _Input.push_back(_Abb);
+    _Input.push_back(_Def);
+    _Input.push_back(DIVIDER);
+
+    for(int i = 0; i < Rule_1.size(); ++i)
+    {
+        _Input.push_back(std::to_string(Rule_1[i]));
+    }
+
+    if(Rule1 == true)
+    {
+         _Input.push_back(std::to_string(Abbreviations.size()+1));
+    }
+
+    for( auto &x : _Input)
+    {
+        std::cout << x;
+    }
+
+    FileHandler FileHandlerInstance("settings.txt");
+    FileHandlerInstance.ModifySettings(_Input);
+
+    return true;
+
+
 
 }

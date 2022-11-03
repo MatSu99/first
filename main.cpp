@@ -50,9 +50,6 @@ int main () {
 
 
 
-    Menu MenuInstance;
-    MenuInstance.Working();
-
     // TODO
     // FILEHANDLER, APPENDING LOGS WORKS INCORRECTLY
 
@@ -75,6 +72,13 @@ int main () {
  
  */
 
+
+    //Menu MenuInstance;
+    //MenuInstance.Working();
+
+    Scribe T1;
+    T1.GetSettings();
+    T1.AddOption("ABC","Alphabet",true);
 
 
 
