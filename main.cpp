@@ -79,6 +79,12 @@ int main () {
     Scribe T1;
     T1.GetSettings();
     T1.AddOption("ABC","Alphabet",true);
+    T1.GetSettings();
+    //T1.PrintVectors();
+    T1.DeleteOption("ABC");
+    T1.GetSettings();
+    T1.DeleteOption("ENG");
+    T1.GetSettings();
 
 
 

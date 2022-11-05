@@ -2,6 +2,7 @@
 #include <vector>
 #include <iterator>
 #include <string>
+#include <algorithm>
 #include "scribe.h"
 #include "filehandler.h"
 #include "calendar.h"
@@ -27,6 +28,19 @@
             FileHandler HandlerInstance("settings.txt");
             HandlerInstance.GiveSettings(Settings);
             std::vector<std::string>::iterator Iter_1 = Settings.begin();
+
+            if(Abbreviations.empty() == false)
+            {
+                Abbreviations.clear();
+            }
+            if(Definitions.empty() == false)
+            {
+                Definitions.clear();
+            }
+            if(Rule_1.empty() == false)
+            {
+                Rule_1.clear();
+            }
             
             while(true) {
 
@@ -270,6 +284,88 @@ bool Scribe::AddOption(std::string _Abb, std::string _Def, bool Rule1)
 
     return true;
 
+
+
+}
+
+void Scribe::DeleteOption(std::string _Abb)
+{
+
+    int pin{0};
+    bool check_R1{false};
+
+    for(int i = 0; i < Abbreviations.size(); ++i)
+    {
+        if(Abbreviations[i] == _Abb)
+        {
+            pin = i;
+            break;
+        }
+    }
+
+    for(int i=0; i < Rule_1.size(); ++i)
+    {
+        if(Rule_1[i] == pin + 1)
+        {
+            check_R1 = true;
+        }
+    }
+
+    std::vector<std::string> _Input;
+
+    if(check_R1 == true)
+    {
+        for(int i = 0; i < Abbreviations.size(); ++i)
+    {
+        if(i != pin)
+        {
+            _Input.push_back(Abbreviations[i]);
+            _Input.push_back(Definitions[i]);
+        }
+    } 
+
+    _Input.push_back(DIVIDER);
+
+    for(int i = 0; i < Rule_1.size(); ++i)
+    {
+        if(Rule_1[i] != pin + 1)
+        {
+            _Input.push_back(std::to_string(Rule_1[i]));
+        }
+    }
+        
+    }
+    else
+    {
+        for(int i = 0; i < Abbreviations.size(); ++i)
+    {
+        if(i != pin)
+        {
+            _Input.push_back(Abbreviations[i]);
+            _Input.push_back(Definitions[i]);
+        }
+    } 
+    
+    _Input.push_back(DIVIDER);
+
+    for(int i = 0; i < Abbreviations.size(); ++i)
+    {
+            _Input.push_back(std::to_string(Rule_1[i]));
+    }
+
+    }
+
+        for( auto &x : _Input)
+    {
+        std::cout << x;
+    }
+
+    FileHandler FileHandlerInstance("settings.txt");
+    FileHandlerInstance.ModifySettings(_Input);
+
+
+
+    return;
 
 
 }

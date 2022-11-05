@@ -13,7 +13,7 @@ class Scribe {
         ~Scribe();
         void GetSettings();
         bool AddOption(std::string _Abb, std::string _Def, bool Rule1);
-        void DeleteOption(int _input1);
+        void DeleteOption(std::string _Abb);
         void ShowDefinitions();
         
 

@@ -1,5 +1,3 @@
-ENG
-English
 GER
 German
 JAP
@@ -9,5 +7,4 @@ C++ Learning
 ANM
 Animation
 XXXXXXXXXX
-1
 4
