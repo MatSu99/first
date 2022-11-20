@@ -228,3 +228,8 @@ void Menu::Update(Scribe &ScribeInstance) {
 
     return;
 }
+
+void Menu::UpdateSettings( Scribe &ScribeInstance)
+{
+    
+}

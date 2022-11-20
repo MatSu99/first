@@ -15,4 +15,5 @@ class Menu {
         int ChooseOption();
         void CheckSettings();
         void Update( Scribe &ScribeInstance);
+        void UpdateSettings( Scribe &ScribeInstance);
 };
