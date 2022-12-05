@@ -7,6 +7,7 @@
 #include "calendar.h"
 #include "menu.h"
 #include "filehandler.h"
+#include "multi.h"
 
 
 int main () {
@@ -76,6 +77,7 @@ int main () {
     //Menu MenuInstance;
     //MenuInstance.Working();
 
+/*
     Scribe T1;
     T1.GetSettings();
     T1.AddOption("ABC","Alphabet",true);
@@ -85,8 +87,10 @@ int main () {
     T1.GetSettings();
     T1.DeleteOption("ENG");
     T1.GetSettings();
+*/
 
-
+    MultiThread T;
+    std::cout << "No. of threads: " << T.checkNumThreads();
 
 
 
